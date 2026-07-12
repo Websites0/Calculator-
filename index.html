@@ -47,11 +47,22 @@
     </div>
 
     <div id="age-calc" class="calc-view">
-      <div class="age-input-group">
+      <div style="text-align: right; margin-bottom: 10px;">
+        <button id="toggle-date-mode" class="btn-action" style="font-size: 14px; padding: 5px 10px;">Manual Entry</button>
+      </div>
+      <div class="age-input-group" id="date-picker-group">
         <label for="dob">Date of Birth</label>
         <input type="date" id="dob">
       </div>
-      <button id="calculate-age-btn" class="btn-operator" style="width: 100%; margin-top: 15px;">Calculate Age</button>
+      <div class="age-input-group" id="manual-date-group" style="display: none;">
+        <label>Date of Birth</label>
+        <div class="manual-date-inputs">
+          <input type="number" id="dob-day" placeholder="DD" min="1" max="31">
+          <input type="number" id="dob-month" placeholder="MM" min="1" max="12">
+          <input type="number" id="dob-year" placeholder="YYYY">
+        </div>
+      </div>
+      <button id="calculate-age-btn" class="btn-operator" style="width: 100%; margin-top: 5px;">Calculate Age</button>
       <div id="age-result" class="age-result-display">
         <div class="age-placeholder">Select your date of birth</div>
       </div>
