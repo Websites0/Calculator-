@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (target.dataset.action === 'operator') {
-            handleOperator(target.textContent);
+            handleOperator(target.dataset.value);
             updateDisplay();
             return;
         }
@@ -46,6 +46,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (target.dataset.action === 'calculate') {
             handleOperator('=');
+            updateDisplay();
+            return;
+        }
+
+        if (target.dataset.action === 'negate') {
+            negate();
+            updateDisplay();
+            return;
+        }
+
+        if (target.dataset.action === 'percentage') {
+            percentage();
             updateDisplay();
             return;
         }
@@ -120,9 +132,23 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const backspace = () => {
+        if (calculator.displayValue === 'Error') {
+            resetCalculator();
+            return;
+        }
         calculator.displayValue = calculator.displayValue.slice(0, -1);
-        if (calculator.displayValue === '') {
+        if (calculator.displayValue === '' || calculator.displayValue === '-') {
             calculator.displayValue = '0';
         }
+    };
+
+    const negate = () => {
+        if (calculator.displayValue === 'Error') return;
+        calculator.displayValue = String(parseFloat(calculator.displayValue) * -1);
+    };
+
+    const percentage = () => {
+        if (calculator.displayValue === 'Error') return;
+        calculator.displayValue = String(parseFloat(calculator.displayValue) / 100);
     };
 });
