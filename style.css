@@ -20,8 +20,106 @@ body {
   box-sizing: border-box;
 }
 
+.tabs {
+  display: flex;
+  margin-bottom: 20px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 5px;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  background: transparent;
+  color: #fff;
+  box-shadow: none;
+  opacity: 0.7;
+}
+
+.tab-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: none;
+  transform: none;
+}
+
+.tab-btn.active {
+  background: rgba(255, 255, 255, 0.2);
+  opacity: 1;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.calc-view {
+  display: none;
+}
+
+.calc-view.active {
+  display: block;
+}
+
 .display {
   margin-bottom: 20px;
+}
+
+/* Age Calculator Styles */
+.age-input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.age-input-group label {
+  color: white;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.age-input-group input {
+  padding: 15px;
+  font-size: 18px;
+  border: none;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  color-scheme: dark;
+}
+
+.age-input-group input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.age-result-display {
+  margin-top: 20px;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.age-placeholder {
+  opacity: 0.6;
+  font-size: 14px;
+}
+
+.age-value {
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.age-details {
+  font-size: 14px;
+  opacity: 0.8;
 }
 
 #result {

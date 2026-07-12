@@ -9,11 +9,17 @@
 </head>
 <body>
   <div class="calculator">
-    <div class="display">
-      <input type="text" id="result" disabled>
+    <div class="tabs">
+      <button class="tab-btn active" data-target="standard-calc">Standard</button>
+      <button class="tab-btn" data-target="age-calc">Age</button>
     </div>
-    <div class="keys">
-      <button data-action="clear" class="btn-action">C</button>
+
+    <div id="standard-calc" class="calc-view active">
+      <div class="display">
+        <input type="text" id="result" disabled>
+      </div>
+      <div class="keys">
+        <button data-action="clear" class="btn-action">C</button>
       <button data-action="negate" class="btn-action">±</button>
       <button data-action="percentage" class="btn-action">%</button>
       <button data-action="operator" data-value="/" class="btn-operator">÷</button>
@@ -37,6 +43,18 @@
       <button data-action="decimal" class="btn-number">.</button>
       <button data-action="backspace" class="btn-action">⌫</button>
       <button data-action="calculate" class="btn-operator">=</button>
+      </div>
+    </div>
+
+    <div id="age-calc" class="calc-view">
+      <div class="age-input-group">
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob">
+      </div>
+      <button id="calculate-age-btn" class="btn-operator" style="width: 100%; margin-top: 15px;">Calculate Age</button>
+      <div id="age-result" class="age-result-display">
+        <div class="age-placeholder">Select your date of birth</div>
+      </div>
     </div>
   </div>
   <script src="script.js"></script>
