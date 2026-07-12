@@ -15,9 +15,13 @@ body {
   border-radius: 20px;
   box-shadow: 0 15px 25px rgba(0,0,0,0.2);
   padding: 20px;
-  width: 90%;
-  max-width: 380px;
+  width: 95%;
+  max-width: 450px;
   box-sizing: border-box;
+}
+
+.scientific-mode {
+  max-width: 450px;
 }
 
 .tabs {
@@ -59,8 +63,43 @@ body {
   display: block;
 }
 
-.display {
-  margin-bottom: 20px;
+.display-container {
+  margin-bottom: 10px;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  padding: 10px 15px;
+  text-align: right;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.expression-display {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  min-height: 24px;
+  word-wrap: break-word;
+  margin-bottom: 5px;
+}
+
+.controls {
+  text-align: right;
+  margin-bottom: 15px;
+}
+
+.angle-select {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 5px;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  outline: none;
+}
+.angle-select option {
+  color: black;
 }
 
 /* Age Calculator Styles */
@@ -146,7 +185,7 @@ body {
 
 #result {
   width: 100%;
-  padding: 15px 10px;
+  padding: 0;
   font-size: 40px;
   text-align: right;
   border: none;
@@ -164,14 +203,18 @@ body {
 .keys {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
+  gap: 10px;
+}
+
+.scientific-keys {
+  grid-template-columns: repeat(5, 1fr);
 }
 
 button {
-  padding: 15px 0;
-  font-size: 24px;
+  padding: 12px 0;
+  font-size: 20px;
   border: none;
-  border-radius: 12px;
+  border-radius: 10px;
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0.2);
   color: white;
@@ -209,14 +252,22 @@ button:active {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-.zero {
-    grid-column: span 2;
-    text-align: left;
-    padding-left: 30px;
+.btn-adv {
+  background-color: rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+}
+.btn-adv:hover {
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
-button[data-action="calculate"] {
-    grid-column: span 2;
+.zero-sci {
+    grid-column: span 3;
+    text-align: left;
+    padding-left: 20px;
+}
+
+.equal-sci {
+    grid-column: span 1;
 }
 
 @media (max-width: 480px) {

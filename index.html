@@ -6,43 +6,74 @@
   <title>Beautiful Calculator</title>
   <link rel="stylesheet" type="text/css" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.js"></script>
 </head>
 <body>
-  <div class="calculator">
+  <div class="calculator scientific-mode">
     <div class="tabs">
-      <button class="tab-btn active" data-target="standard-calc">Standard</button>
+      <button class="tab-btn active" data-target="scientific-calc">Scientific</button>
       <button class="tab-btn" data-target="age-calc">Age</button>
     </div>
 
-    <div id="standard-calc" class="calc-view active">
-      <div class="display">
-        <input type="text" id="result" disabled>
+    <div id="scientific-calc" class="calc-view active">
+      <div class="display-container">
+        <div id="expression" class="expression-display"></div>
+        <input type="text" id="result" disabled value="0">
       </div>
-      <div class="keys">
+      <div class="controls">
+         <label style="color:white; font-size: 12px; margin-right: 10px;">Angle:</label>
+         <select id="angle-unit" class="angle-select">
+            <option value="deg">DEG</option>
+            <option value="rad">RAD</option>
+         </select>
+      </div>
+      <div class="keys scientific-keys">
+        <!-- Row 1: Advanced Math -->
+        <button data-action="append" data-value="sin(" class="btn-adv">sin</button>
+        <button data-action="append" data-value="cos(" class="btn-adv">cos</button>
+        <button data-action="append" data-value="tan(" class="btn-adv">tan</button>
+        <button data-action="append" data-value="log10(" class="btn-adv">log</button>
+        <button data-action="append" data-value="log(" class="btn-adv">ln</button>
+
+        <!-- Row 2: Advanced Math -->
+        <button data-action="append" data-value="sqrt(" class="btn-adv">√</button>
+        <button data-action="append" data-value="^" class="btn-adv">xʸ</button>
+        <button data-action="append" data-value="pi" class="btn-adv">π</button>
+        <button data-action="append" data-value="e" class="btn-adv">e</button>
+        <button data-action="append" data-value="!" class="btn-adv">n!</button>
+
+        <!-- Row 3: Brackets & Basic Actions -->
+        <button data-action="append" data-value="(" class="btn-adv">(</button>
+        <button data-action="append" data-value=")" class="btn-adv">)</button>
         <button data-action="clear" class="btn-action">C</button>
-      <button data-action="negate" class="btn-action">±</button>
-      <button data-action="percentage" class="btn-action">%</button>
-      <button data-action="operator" data-value="/" class="btn-operator">÷</button>
+        <button data-action="backspace" class="btn-action">⌫</button>
+        <button data-action="append" data-value="/" class="btn-operator">÷</button>
 
-      <button class="btn-number">7</button>
-      <button class="btn-number">8</button>
-      <button class="btn-number">9</button>
-      <button data-action="operator" data-value="*" class="btn-operator">×</button>
+        <!-- Row 4: Numbers -->
+        <button data-action="append" data-value="7" class="btn-number">7</button>
+        <button data-action="append" data-value="8" class="btn-number">8</button>
+        <button data-action="append" data-value="9" class="btn-number">9</button>
+        <button data-action="append" data-value="%" class="btn-adv">%</button>
+        <button data-action="append" data-value="*" class="btn-operator">×</button>
 
-      <button class="btn-number">4</button>
-      <button class="btn-number">5</button>
-      <button class="btn-number">6</button>
-      <button data-action="operator" data-value="-" class="btn-operator">−</button>
+        <!-- Row 5: Numbers -->
+        <button data-action="append" data-value="4" class="btn-number">4</button>
+        <button data-action="append" data-value="5" class="btn-number">5</button>
+        <button data-action="append" data-value="6" class="btn-number">6</button>
+        <button data-action="append" data-value="^(-1)" class="btn-adv">x⁻¹</button>
+        <button data-action="append" data-value="-" class="btn-operator">−</button>
 
-      <button class="btn-number">1</button>
-      <button class="btn-number">2</button>
-      <button class="btn-number">3</button>
-      <button data-action="operator" data-value="+" class="btn-operator">+</button>
+        <!-- Row 6: Numbers -->
+        <button data-action="append" data-value="1" class="btn-number">1</button>
+        <button data-action="append" data-value="2" class="btn-number">2</button>
+        <button data-action="append" data-value="3" class="btn-number">3</button>
+        <button data-action="append" data-value="^2" class="btn-adv">x²</button>
+        <button data-action="append" data-value="+" class="btn-operator">+</button>
 
-      <button class="btn-number zero">0</button>
-      <button data-action="decimal" class="btn-number">.</button>
-      <button data-action="backspace" class="btn-action">⌫</button>
-      <button data-action="calculate" class="btn-operator">=</button>
+        <!-- Row 7: Bottom Row -->
+        <button data-action="append" data-value="0" class="btn-number zero-sci">0</button>
+        <button data-action="append" data-value="." class="btn-number">.</button>
+        <button data-action="calculate" class="btn-operator equal-sci">=</button>
       </div>
     </div>
 
