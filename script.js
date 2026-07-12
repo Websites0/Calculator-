@@ -174,4 +174,65 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentValue = parseFloat(calculator.displayValue);
         calculator.displayValue = String(currentValue / 100);
     };
+    // --- Tab Switching Logic ---
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const calcViews = document.querySelectorAll('.calc-view');
+
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active class from all tabs and views
+            tabBtns.forEach(b => b.classList.remove('active'));
+            calcViews.forEach(v => v.classList.remove('active'));
+
+            // Add active class to clicked tab and corresponding view
+            btn.classList.add('active');
+            const targetId = btn.dataset.target;
+            document.getElementById(targetId).classList.add('active');
+        });
+    });
+
+    // --- Age Calculator Logic ---
+    const calculateAgeBtn = document.getElementById('calculate-age-btn');
+    const dobInput = document.getElementById('dob');
+    const ageResult = document.getElementById('age-result');
+
+    calculateAgeBtn.addEventListener('click', () => {
+        const dobValue = dobInput.value;
+
+        if (!dobValue) {
+            ageResult.innerHTML = '<div class="age-placeholder" style="color: #ffbaba;">Please select a valid date</div>';
+            return;
+        }
+
+        const dob = new Date(dobValue);
+        const today = new Date();
+
+        if (dob > today) {
+            ageResult.innerHTML = '<div class="age-placeholder" style="color: #ffbaba;">Date of birth cannot be in the future</div>';
+            return;
+        }
+
+        let years = today.getFullYear() - dob.getFullYear();
+        let months = today.getMonth() - dob.getMonth();
+        let days = today.getDate() - dob.getDate();
+
+        // Adjust for negative days
+        if (days < 0) {
+            months--;
+            // Get the number of days in the previous month
+            const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+            days += prevMonth.getDate();
+        }
+
+        // Adjust for negative months
+        if (months < 0) {
+            years--;
+            months += 12;
+        }
+
+        ageResult.innerHTML = `
+            <div class="age-value">${years} Years</div>
+            <div class="age-details">${months} Months | ${days} Days</div>
+        `;
+    });
 });
