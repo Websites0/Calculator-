@@ -92,6 +92,28 @@ body {
   background: rgba(255, 255, 255, 0.3);
 }
 
+.manual-date-inputs {
+  display: flex;
+  gap: 10px;
+}
+
+.manual-date-inputs input {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+  padding: 15px 5px;
+}
+
+/* Hide number input spinners */
+.manual-date-inputs input::-webkit-outer-spin-button,
+.manual-date-inputs input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.manual-date-inputs input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .age-result-display {
   margin-top: 20px;
   background: rgba(0, 0, 0, 0.15);
