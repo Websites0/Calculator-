@@ -15,7 +15,9 @@ body {
   border-radius: 20px;
   box-shadow: 0 15px 25px rgba(0,0,0,0.2);
   padding: 20px;
-  width: 320px;
+  width: 90%;
+  max-width: 380px;
+  box-sizing: border-box;
 }
 
 .display {
@@ -95,4 +97,29 @@ button:active {
 
 button[data-action="calculate"] {
     grid-column: span 2;
+}
+
+@media (max-width: 480px) {
+  .calculator {
+    padding: 15px;
+    border-radius: 15px;
+  }
+
+  #result {
+    font-size: 32px;
+    padding: 10px;
+  }
+
+  .keys {
+    gap: 10px;
+  }
+
+  button {
+    font-size: 20px;
+    padding: 12px 0;
+  }
+
+  .zero {
+    padding-left: 20px;
+  }
 }
