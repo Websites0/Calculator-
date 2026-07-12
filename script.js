@@ -67,6 +67,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const inputDigit = (digit) => {
+        if (calculator.displayValue === 'Error') {
+            resetCalculator();
+        }
+
         const { displayValue, waitingForSecondOperand } = calculator;
 
         if (waitingForSecondOperand === true) {
@@ -78,6 +82,10 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const inputDecimal = (dot) => {
+        if (calculator.displayValue === 'Error') {
+            resetCalculator();
+        }
+
         if (calculator.waitingForSecondOperand === true) {
             calculator.displayValue = '0.';
             calculator.waitingForSecondOperand = false;
@@ -90,6 +98,10 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const handleOperator = (nextOperator) => {
+        if (calculator.displayValue === 'Error') {
+            return; // Ignore operators if in error state
+        }
+
         const { firstOperand, displayValue, operator } = calculator;
         const inputValue = parseFloat(displayValue);
 
@@ -104,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const result = performCalculation[operator](firstOperand, inputValue);
 
             calculator.displayValue = String(result);
-            calculator.firstOperand = result;
+            calculator.firstOperand = result === 'Error' ? null : result;
         }
 
         calculator.waitingForSecondOperand = true;
@@ -136,6 +148,11 @@ document.addEventListener('DOMContentLoaded', () => {
             resetCalculator();
             return;
         }
+
+        if (calculator.waitingForSecondOperand) {
+            return;
+        }
+
         calculator.displayValue = calculator.displayValue.slice(0, -1);
         if (calculator.displayValue === '' || calculator.displayValue === '-') {
             calculator.displayValue = '0';
@@ -144,11 +161,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const negate = () => {
         if (calculator.displayValue === 'Error') return;
-        calculator.displayValue = String(parseFloat(calculator.displayValue) * -1);
+
+        const currentValue = parseFloat(calculator.displayValue);
+        if (currentValue === 0) return; // Don't negate 0
+
+        calculator.displayValue = String(currentValue * -1);
     };
 
     const percentage = () => {
         if (calculator.displayValue === 'Error') return;
-        calculator.displayValue = String(parseFloat(calculator.displayValue) / 100);
+
+        const currentValue = parseFloat(calculator.displayValue);
+        calculator.displayValue = String(currentValue / 100);
     };
 });
